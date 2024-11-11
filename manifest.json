@@ -11,6 +11,26 @@
     "background": {
         "service_worker": "background.js"
     },
+    "commands": {
+        "convertToUppercase": {
+            "suggested_key": {
+                "default": "Alt+U"
+            },
+            "description": "Convert selected text to UPPERCASE"
+        },
+        "convertToLowercase": {
+            "suggested_key": {
+                "default": "Alt+L"
+            },
+            "description": "Convert selected text to lowercase"
+        },
+        "capitalizeText": {
+            "suggested_key": {
+                "default": "Alt+C"
+            },
+            "description": "Capitalize selected text"
+        }
+    },
     "icons": {
         "128": "icon128.png"
     },

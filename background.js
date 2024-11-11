@@ -35,6 +35,28 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
+chrome.commands.onCommand.addListener((command) => {
+  chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+    const tabId = tabs[0].id;
+    if (command === "convertToUppercase") {
+      chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        function: convertToUppercase,
+      });
+    } else if (command === "convertToLowercase") {
+      chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        function: convertToLowercase,
+      });
+    } else if (command === "capitalizeText") {
+      chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        function: capitalizeText,
+      });
+    }
+  });
+});
+
 function capitalizeText() {
   const selection = window.getSelection().toString();
   if (selection) {
