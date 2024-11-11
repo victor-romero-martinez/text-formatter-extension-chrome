@@ -1,0 +1,20 @@
+{
+    "manifest_version": 3,
+    "name": "Text formatter",
+    "version": "1.0",
+    "description": "Text formatter for Chrome",
+    "permissions": [
+        "contextMenus",
+        "activeTab",
+        "scripting"
+    ],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "icons": {
+        "128": "icon128.png"
+    },
+    "action": {
+        "default_popup": "popup.html"
+    }
+}
