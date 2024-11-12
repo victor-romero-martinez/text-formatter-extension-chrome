@@ -29,6 +29,12 @@
                 "default": "Alt+C"
             },
             "description": "Capitalize selected text"
+        },
+        "convertToQuestion": {
+            "suggested_key": {
+                "default": "Alt+Q"
+            },
+            "description": "Convert selected to question"
         }
     },
     "icons": {

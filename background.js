@@ -14,6 +14,11 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Convert to lowercase",
     contexts: ["selection"],
   });
+  chrome.contextMenus.create({
+    id: "convertToQuestion",
+    title: "Convert to question",
+    contexts: ["selection"],
+  });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
@@ -31,6 +36,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
       function: convertToUppercase,
+    });
+  } else if (info.menuItemId === "convertToQuestion") {
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      function: convertToQuestion,
     });
   }
 });
@@ -52,6 +62,11 @@ chrome.commands.onCommand.addListener((command) => {
       chrome.scripting.executeScript({
         target: { tabId: tabId },
         function: capitalizeText,
+      });
+    } else if (command === "convertToQuestion") {
+      chrome.scripting.executeScript({
+        target: { tabId: tabId },
+        function: convertToQuestion,
       });
     }
   });
@@ -80,5 +95,13 @@ function convertToLowercase() {
   const selection = window.getSelection().toString();
   if (selection) {
     document.execCommand("insertText", false, selection.toLowerCase());
+  }
+}
+
+function convertToQuestion() {
+  const selection = window.getSelection().toString();
+  if (selection) {
+    const toQuestion = () => `¿${selection}?`;
+    document.execCommand("insertText", false, toQuestion());
   }
 }
