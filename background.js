@@ -21,6 +21,7 @@ chrome.runtime.onInstalled.addListener(() => {
   });
 });
 
+// INFO: click listener
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "capitalizeText") {
     chrome.scripting.executeScript({
@@ -45,6 +46,7 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 });
 
+// INFO: shortcuts listener
 chrome.commands.onCommand.addListener((command) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
     const tabId = tabs[0].id;
@@ -72,6 +74,8 @@ chrome.commands.onCommand.addListener((command) => {
   });
 });
 
+//#region convert text
+// NOTICE: add here functions to convert text
 function capitalizeText() {
   const selection = window.getSelection().toString();
   if (selection) {
@@ -105,3 +109,4 @@ function convertToQuestion() {
     document.execCommand("insertText", false, toQuestion());
   }
 }
+//#endregion
