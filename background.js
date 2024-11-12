@@ -105,7 +105,10 @@ function convertToLowercase() {
 function convertToQuestion() {
   const selection = window.getSelection().toString();
   if (selection) {
-    const toQuestion = () => `¿${selection}?`;
+    const toQuestion = () => {
+      const temp = selection.replace(/^\w/, (match) => match.toUpperCase());
+      return `¿${temp}?`;
+    };
     document.execCommand("insertText", false, toQuestion());
   }
 }
